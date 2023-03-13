@@ -1,0 +1,29 @@
+name: yahtzee-text # you probably want to 'snapcraft register <name>'
+base: core18 # the base snap is the execution environment for this snap
+version: '1.01' # just for humans, typically '1.2+git' or '1.3.2'
+summary:  Yahtzee is a dice game based on Poker. This is a text version
+description: |
+   Yahtzee is a dice game based on Poker. The object of the game is to roll certain combinations of numbers with five dice. At each turn you throw dice trying to get a good combination of numbers; different combinations give different scores. While luck plays a big role in Yahtzee, strategy makes a significant difference. Play the game with the "yahtzee" command. To see the high scores with the "yahtzee -s". Note this requires a 80x25 shell window size.
+
+grade: stable # must be 'stable' to release into candidate/stable channels
+confinement: strict # use 'strict' once you have the right plugs and slots
+icon:  yahtzee_icon.png
+title: Yahtzee - SBI
+
+apps:
+  yahtzee:
+    command: yahtzee
+parts:
+  yahtzee:
+    # See 'snapcraft plugins'
+    plugin: dump
+    source: .
+#    build-packages: [default-jre]
+#    stage-packages: [default-jre]
+    organize:
+      yahtzee: build/
+      yahtzee.1: man/man1/
+
+architectures:
+  - build-on: amd64
+
